@@ -1,5 +1,14 @@
+<<<<<<< HEAD
 import { swap, getRadomInit } from '../../utils/index';
 
+=======
+function swap(arr, a, b): void {
+  let t = arr[a];
+  arr[a] = arr[b];
+  arr[b] = t;
+}
+//upper sort
+>>>>>>> solutions: quickSort
 function bubbleSort(nums: number[]): number[] {
   let n = nums.length
   for (let i = 0; i < n - 1; i++) {
@@ -14,9 +23,47 @@ function bubbleSort(nums: number[]): number[] {
   return nums
 }
 
+function partition(nums: number[], start: number, end: number): number {
+  if (start >= end) {
+    return -1;
+  }
+  let index = start - 1;
+  let radomIndex = start;
+  swap(nums, radomIndex, end);
+  for(let i = start; i < end; i++) {
+    if(nums[i] < nums[end]) {
+      index++;
+      if(index !== i) {
+        swap(nums, index, i);
+      }
+    }
+  }
+  index++;
+  swap(nums, index, end);
+  return index;
+}
+
+function quickSortCore(nums: number[], start: number, end: number): number[] {
+  if (start >= end) {
+    return nums;
+  }
+  let index = partition(nums, start, end);
+  if (index > start) {
+    quickSortCore(nums, start, index - 1);
+  }
+  if (index < end) {
+    quickSortCore(nums, index + 1, end);
+  }
+  return nums;
+}
+
 function quickSort(nums: number[]): number[] {
+<<<<<<< HEAD
 
   return nums; 
+=======
+  return quickSortCore(nums, 0, nums.length - 1);  
+>>>>>>> solutions: quickSort
 }
 
 module.exports = {
