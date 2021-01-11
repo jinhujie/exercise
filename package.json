@@ -12,6 +12,7 @@
     "prettier": "2.2.1"
   },
   "scripts": {
+    "prettier": "prettier --write",
     "test": "jest"
   },
   "author": "",
