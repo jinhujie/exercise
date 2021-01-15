@@ -2,7 +2,7 @@
  * @return: string(return by 'typeof' operator)[]
  */
 export const basicDataType = () : string[] => {
-  return [];
+  return ['number', 'boolean', 'null', 'undefined', 'string', 'symbol', 'bigint'];
 }
 
 /**
@@ -17,11 +17,15 @@ export const getBuildInClass = () : string[] => {
   // return [[class]] of intances of box 
   class MyClass{}
   const box = [/^a/, MyClass, [], new MyClass()];
-  return [];
+  return box.map(i => Object.prototype.toString.call(i));
 }
 
 export const setBuildInClass = () : any => {
   // make [[class]] of instance of MyClass toBe MyClass.name
-  class MyClass{}
+  class MyClass{
+    get [Symbol.toStringTag]() {
+      return MyClass.name;
+    }
+  }
   return MyClass;
 }
