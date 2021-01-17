@@ -18,3 +18,10 @@ export const myApply = function (fn: Function, context: object, args) {
 Function.prototype.myBind = function (context: object, ...args) {
   
 }
+
+/**
+ * # 98 curry
+ */
+export const curry = function (fn: Function) {
+  
+}
