@@ -23,5 +23,16 @@ Function.prototype.myBind = function (context: object, ...args) {
  * # 98 curry
  */
 export const curry = function (fn: Function) {
-  
+  const innerArgs = [].slice.call(arguments, 1);
+
+  return function () {
+    const outterArgs = [].slice.call(arguments, 0);
+    const args = [...innerArgs, ...outterArgs];
+    
+    if (args.length  >= fn.length) {
+      return fn.apply(this, args);
+    } else {
+      return curry.call(this, fn, ...args)
+    }
+  }
 }
